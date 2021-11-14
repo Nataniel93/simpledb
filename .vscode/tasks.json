@@ -10,7 +10,10 @@
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}/bin/${fileBasenameNoExtension}"
+        "${fileDirname}/bin/${fileBasenameNoExtension}",
+        "${fileDirname}/src/crud/operacoes.c",
+        "${fileDirname}/src/cli/commands.c",
+        "${fileDirname}/src/cli/utils.c"
       ],
       "options": {
         "cwd": "${fileDirname}"

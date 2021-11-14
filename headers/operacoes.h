@@ -1,0 +1,6 @@
+#ifndef OPERACOES_H_INCLUDED
+#define OPERACOES_H_INCLUDED
+
+void insert();
+
+#endif // OPERACOES_H_INCLUDED
