@@ -5,8 +5,11 @@
 bool compareTo(char *argv[], char *op) {
   char *operation;
   bool response = false;
+  // char arg[strlen(argv[1])];
+  // printf("argv[1] compareTo -> %s\n\n", argv[1]);
+  // strncpy(arg, argv[1], strlen(argv[1]));
 
-  operation = strtok(argv[1],"={}");
+  operation = strtok(argv,"={}");
   if (strcmp(operation, op)) response = true;
 
   return !response;

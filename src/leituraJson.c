@@ -11,7 +11,6 @@ int main(int argc, char **argv) {
 	struct json_object *name;
 	struct json_object *email;
 	struct json_object *cpf;
-	
 
 	fp = fopen("teste.json","r");
 	fread(buffer, 1024, 1, fp);
