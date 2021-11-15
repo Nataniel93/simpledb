@@ -8,47 +8,61 @@
 
 int main(int argc, char *argv[])
 {
-  printf("argv main -> %s\n", argv[1]);
-  if (insert_op(argv))
-  {
-    printf("\nEh Insert\n\n");
-    // char** data = buildData(argv, false);
 
-    // if (!data) {
-    //   printf ("ERROR: Unable to allocate data!\n");
-    //   return 1;
-    // }
-    // else {
-    //   printf("\nDeu certo!\n");
-    //   for (int i = 0; i < 2; i++) {
-    //     printf("\nDATA -> %s \n", data[i]);
-    //   }
-    // }
+  /**
+   * @brief Verifica se o comando do CLI é insert.
+   * 
+   */
+  if (insert_op(argv))
+  {    
+    printf("\nEh Insert\n\n");
+    printf("argv[1] antes do build -> %s\n\n", argv[1]);
+    char** data = buildData(argv, false);
+
+    if (!data) {
+      printf ("ERROR: Unable to allocate data!\n");
+      return 1;
+    }
+    else {
+      printf("\nDeu certo!\n");
+      for (int i = 0; i < 2; i++) {
+        printf("\nDATA [%d]-> %s \n", i, data[i]);
+      }
+    }
   }
+
   else if (search_op(argv))
   {
     printf("\nEh Search\n\n");
   }
+
   else if (remove_op(argv))
   {
     printf("\nEh Remove\n\n");
   }
+
+  /**
+   * @brief Verifica se o camando do CLI é de update.
+   * 
+   */
   else if (update_op(argv))
   {
     printf("\nEh Update\n\n");
-    // char** data = buildData(argv, true);
+    printf("argv[1] antes do buildUpdate -> %s\n\n", argv[1]);
+    char** data = buildData(argv, true);
 
-    // if (!data) {
-    //   printf ("ERROR: Unable to allocate data!\n");
-    //   return 1;
-    // }
-    // else {
-    //   printf("\nDeu certo!\n");
-    //   for (int i = 0; i < 3; i++) {
-    //     printf("\nDATA -> %s \n", data[i]);
-    //   }
-    // }
+    if (!data) {
+      printf ("ERROR: Unable to allocate data!\n");
+      return 1;
+    }
+    else {
+      printf("\nDeu certo!\n");
+      for (int i = 0; i < 3; i++) {
+        printf("\nDATA [%d]-> %s \n", i, data[i]);
+      }
+    }
   }
+
   else if (list_op(argv))
   {
     printf("\nEh List\n\n");
