@@ -3,11 +3,10 @@
 #include <string.h>
 
 bool compareTo(char *argv[], char *op) {
-  printf("argv compareTo -> %s\n", argv[1]);
   char *operation;
   bool response = false;
   char arg[strlen(argv[1])];
-  printf("argv[1] compareTo -> %s\n\n", argv[1]);
+
   strncpy(arg, argv[1], strlen(argv[1]));
 
   operation = strtok(arg,"=");
@@ -22,7 +21,6 @@ bool compareTo(char *argv[], char *op) {
  * @return bool, resultado da comparação
  */
 bool insert_op(char *argv[]) {
-  printf("argv insert_op -> %s\n", argv[1]);
  return compareTo(argv, "--insert");
 }
 

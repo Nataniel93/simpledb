@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
   if (insert_op(argv))
   {    
     printf("\nEh Insert\n\n");
-    printf("argv[1] antes do build -> %s\n\n", argv[1]);
     char** data = buildData(argv, false);
 
     if (!data) {
@@ -24,11 +23,6 @@ int main(int argc, char *argv[])
       return 1;
     }
     else {
-      printf("\nDeu certo!\n");
-      for (int i = 0; i < 2; i++) {
-        printf("\nDATA [%d]-> %s \n", i, data[i]);
-      }
-
       insert_table();
     }
   }
@@ -50,7 +44,6 @@ int main(int argc, char *argv[])
   else if (update_op(argv))
   {
     printf("\nEh Update\n\n");
-    printf("argv[1] antes do buildUpdate -> %s\n\n", argv[1]);
     char** data = buildData(argv, true);
 
     if (!data) {
@@ -59,9 +52,6 @@ int main(int argc, char *argv[])
     }
     else {
       printf("\nDeu certo!\n");
-      for (int i = 0; i < 3; i++) {
-        printf("\nDATA [%d]-> %s \n", i, data[i]);
-      }
     }
   }
 

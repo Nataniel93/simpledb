@@ -21,17 +21,14 @@ char **buildData(char *argv[], bool updating)
     data_size = 3;
     pch = strtok(NULL, "=,,");
     key = pch;
-    printf("key %s\n", key);
   }
 
   pch = strtok(NULL, "=,,");
   char *sortKey = pch;
-  printf("sortKey %s\n", sortKey);
 
   //separa o JSON sem as chaves.
   pch = strtok(NULL, "=");
   char *json = pch;
-  printf("json %s\n", json);
 
   // Vetor de dados. Pode conter as chaves sort_key, value(json), key(caso a operação for --update)
   char **data = malloc(sizeof(char *) * data_size);
