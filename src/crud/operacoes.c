@@ -1,5 +1,6 @@
 #include <stdio.h>
 
-void insert() {
+void insert_table() {
+  
   printf("Insert Operação \n");
 }

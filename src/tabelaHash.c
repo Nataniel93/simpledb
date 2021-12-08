@@ -181,7 +181,7 @@ void imprimir_tabela(){
     printf("---------------------FIM TABELA-----------------------\n");
 }
 
-int main() {
+int menu() {
     int op, mat;
     Pessoa *p;
 
