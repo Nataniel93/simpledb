@@ -1,7 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 #include "../../headers/leiturajson.h"
 
-void insert_table(char *data) {
-  Pessoa pessoa =  retornarPessoaApartirDeJson(data);
+void inserir_pessoa(char *data) {
+
+  char *arg = data;
+
+  Pessoa pessoa =  retornarPessoaApartirDeJson(arg);
+
+  inicializar_tabela();
+  inserir_pessoa_tabela(pessoa);
+  imprimir_tabela();
+
   printf("Insert Operação \n");
 }

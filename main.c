@@ -14,16 +14,22 @@ int main(int argc, char *argv[])
    * 
    */
   if (insert_op(argv))
-  {    
+  {
     printf("\nEh Insert\n\n");
-    char** data = buildData(argv, false);
+    char **data = buildData(argv, false);
 
-    if (!data) {
-      printf ("ERROR: Unable to allocate data!\n");
+    if (!data)
+    {
+      printf("ERROR: Unable to allocate data!\n");
       return 1;
     }
-    else {
-      insert_table();
+    else
+    {
+      for (int i = 0; i < 3; i++)
+      {
+        printf("\nDATA [%d]-> %s \n", i, data[i]);
+      }
+      inserir_pessoa(data[1]);
     }
   }
 
@@ -44,13 +50,15 @@ int main(int argc, char *argv[])
   else if (update_op(argv))
   {
     printf("\nEh Update\n\n");
-    char** data = buildData(argv, true);
+    char **data = buildData(argv, true);
 
-    if (!data) {
-      printf ("ERROR: Unable to allocate data!\n");
+    if (!data)
+    {
+      printf("ERROR: Unable to allocate data!\n");
       return 1;
     }
-    else {
+    else
+    {
       printf("\nDeu certo!\n");
     }
   }
@@ -65,4 +73,5 @@ int main(int argc, char *argv[])
   }
 
   return 0;
+  
 }

@@ -6,6 +6,8 @@
 #include <assert.h>
 #include "../headers/tabelahash.h"
 
+void imprimir_tabela();
+
 /**
  * @brief Cria uma STRUCT do tipo NO.
  * 
@@ -217,7 +219,7 @@ int inserir_pessoa_tabela(Pessoa pes)
   SEMAPHORE_DOWN();
 
     retorno = insercao_dados_lista(pes, tabela[indice]);
-
+    
   SEMAPHORE_UP();
 
   return (retorno);
@@ -363,8 +365,12 @@ void imprimir_tabela()
   printf("\n---------------------TABELA-------------------------\n");
   for (i = 0; i < __HASHTABLE_LENGTH; i++)
   {
-    printf("%d Lista tamanho: %d\n", i, tabela[i]->tam);
-    imprimir_lista(tabela[i]->inicio);
+    if(tabela[i]->tam != 0 ){
+
+    printf("%d Lista tamanho: %d\n", i, tabela[i]->tam);    
+      imprimir_lista(tabela[i]->inicio);
+    }
   }
   printf("---------------------FIM TABELA-----------------------\n");
+
 }
