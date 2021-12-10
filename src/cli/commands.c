@@ -11,8 +11,6 @@ bool compareTo(char *argv[], char *op) {
   operation = strtok(arg,"=");
 
   if (strcmp(operation, op)) response = true;
-  printf("\n operation %s", operation);
-  // printf("\n op %s", op);
 
   return !response;
 }

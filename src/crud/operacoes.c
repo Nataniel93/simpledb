@@ -14,7 +14,6 @@ int inserir_pessoa(char *data)
   char *arg = data;
   Pessoa pessoa =  retornarPessoaApartirDeJson(arg);
 
-  printf("\tNome: %s\tCPF: %ld\tEmail: %s\n", pessoa.nome, pessoa.cpf, pessoa.email);
   retorno = inserir_pessoa_tabela(pessoa);
 
   return retorno;

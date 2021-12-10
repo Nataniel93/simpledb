@@ -16,7 +16,7 @@ char **buildData(char *argv[], bool updating)
 {
   // char str[] = "--insert=3,{'nome':'Cinderela','autor':'Pedro','CPF':1233456,'ano':1940}";
   // char str[] = "--update=1233456,3,{'nome':'Branca de Neve','autor':'Qualquer','CPF':1233456,'ano':1940}";
-
+  printf("\nbuildData\n");
   char *pch;
   char *key;
   int data_size = 2;
@@ -57,6 +57,7 @@ char **buildData(char *argv[], bool updating)
   // Preencher as posições do data
   strcpy(data[0], sortKey);
   strcpy(data[1], json);
+
   if (updating)
   {
     strncpy(data[2], key, sizeof(data[2]));
