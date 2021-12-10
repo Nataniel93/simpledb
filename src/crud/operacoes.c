@@ -37,7 +37,7 @@ int atualizar_pessoa(char *data)
   int erros = 0;
   int cpf = retornarCpfJson(data);
   char *arg = data;
-  char **nomeEmail = retornarNomeEmailJson(data);
+  char **nomeEmail = retornarNomeEmailJson(arg);
 
   if (strcmp(nomeEmail[0], "") && strlen(nomeEmail[0]) > 50)
   {
