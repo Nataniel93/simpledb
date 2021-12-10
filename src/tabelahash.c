@@ -4,7 +4,7 @@
 #include <semaphore.h>
 #include <pthread.h>
 #include <assert.h>
-#include "../headers/tabelahash.h"
+#include <tabelahash.h>
 
 void imprimir_tabela();
 
@@ -129,21 +129,22 @@ Lista *criar_lista()
 }
 
 /**
- * @brief 
+ * @brief Insere um objeto pessoa em uma das listas da tabela hash
  * 
- * @param p Representa uma nova pessoa a ser inserida na lista.
- * @param lista Endereço de uma lista encadeada
+ * @param p Pessoa a ser inserido na tabela
+ * @param lista Ponteiro da lista na qual a pessoa será adicionada
+ * @return int Retorna 1 caso consigo adicionar a Pessoa e 0 caso contrário 
  */
 int insercao_dados_lista(Pessoa p, Lista *lista)
 {
-  int retorno = -1;
+  int retorno = 0;
   No *no = malloc(sizeof(No));
   no->pessoa = p;
   no->proximo = lista->inicio;
   lista->inicio = no;
   lista->tam++;
 
-  if (no != NULL) retorno = 0;
+  if (no != NULL) retorno = 1;
 
   return (retorno);
 }
@@ -183,8 +184,8 @@ void imprimir_lista(No *inicio)
 }
 
 /**
- * @brief Inicializa a tabela com uma lista vazia em cada posição do vetor
- * 
+ * @brief Inicializa a tabela com uma lista vazia em cada posição da tabela hash
+ * assim como os mutex e semáforos da lista
  */
 void inicializar_tabela()
 {
@@ -192,6 +193,7 @@ void inicializar_tabela()
   nreaders = 0;
   MUTEX_INIT();
   SEMAPHORE_INIT();
+
   for (i = 0; i < __HASHTABLE_LENGTH; i++)
     tabela[i] = criar_lista();
 }
@@ -208,12 +210,14 @@ int funcao_espalhamento(long cpf)
 }
 
 /**
- * @brief Cria uma nova pessoa e insere os dados na tabela.
+ * @brief Método de uso externo para adicionar uma Pessoa a tabela hash
  * 
+ * @param pes Struct do tipo Pessoa que será adicionado na tabela
+ * @return int Retorna 1 caso a operação seja bem-sucedida e 1 caso contrário 
  */
 int inserir_pessoa_tabela(Pessoa pes)
 {
-  int retorno = -1;
+  int retorno = 0;
   int indice = funcao_espalhamento(pes.cpf);
 
   SEMAPHORE_DOWN();
@@ -247,9 +251,17 @@ Pessoa *buscar_pessoa_tabela(long cpf)
     return NULL;
 }
 
+/**
+ * @brief Atualiza uma pessoal já existente na tabela
+ * 
+ * @param cpf Cpf da pessoa a ser atualizada, passagem *Obrigatória
+ * @param nome Novo nome que será atribuído a pessoa, passagem *Opcional
+ * @param email Novo email que será atribuído a pessoa, passagem *Opcional
+ * @return int Retorna 1 caso a operação seja bem-sucedida e 0 caso contrário
+ */
 int atualizar_pessoa_tabela(long cpf, const char *nome, const char *email)
 {
-  int retorno = -1;
+  int retorno = 0;
   Pessoa *pessoa;
 
   SEMAPHORE_DOWN();
@@ -268,7 +280,7 @@ int atualizar_pessoa_tabela(long cpf, const char *nome, const char *email)
         strncpy(pessoa->email, email, strlen(email));
       }
 
-      retorno = 0;
+      retorno = 1;
     }
 
   SEMAPHORE_UP();
@@ -288,9 +300,15 @@ No *fim_lista(No *inicio, int tamanho)
   return ultimo;
 }
 
+/**
+ * @brief Remove uma pessoa da tabela
+ * 
+ * @param cpf Cpf da pessoa a ser removida, *Obrigatorio
+ * @return int Retorna 1 caso a operação seja bem-sucedida e 0 caso contrário
+ */
 int remover_pessoa_tabela(long cpf)
 {
-  int retorno = -1;
+  int retorno = 0;
   int achou;
   int indice = funcao_espalhamento(cpf);
   No *no_pessoa;
@@ -347,7 +365,7 @@ int remover_pessoa_tabela(long cpf)
         }
       } while (aux != NULL);
 
-      if (achou != 0) retorno = 0;
+      if (achou != 0) retorno = 1;
     }
 
   SEMAPHORE_UP();

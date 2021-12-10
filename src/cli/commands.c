@@ -6,11 +6,13 @@ bool compareTo(char *argv[], char *op) {
   char *operation;
   bool response = false;
   char arg[strlen(argv[1])];
-
   strncpy(arg, argv[1], strlen(argv[1]));
 
   operation = strtok(arg,"=");
+
   if (strcmp(operation, op)) response = true;
+  printf("\n operation %s", operation);
+  // printf("\n op %s", op);
 
   return !response;
 }
@@ -58,5 +60,14 @@ bool update_op(char *argv[]) {
  */
 bool list_op(char *argv[]) {
  return compareTo(argv, "--list");
+}
+
+/**
+ * Verifica se a operação é do tipo "--exit"
+ * @param *argv[], parâmetro passado na cli 
+ * @return bool, resultado da comparação
+ */
+bool exit_op(char *argv[]) {
+ return compareTo(argv, "--exit");
 }
 

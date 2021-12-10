@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../headers/tabelahash.h"
+#include <tabelahash.h>
 
 Pessoa retornarPessoaApartirDeJson(char *data)
 { 
@@ -40,7 +40,6 @@ Pessoa retornarPessoaApartirDeJson(char *data)
     strncpy(pessoa.email, parsed_email, strlen(parsed_email));
     pessoa.cpf = json_object_get_int(cpf);
   }
-  
 
 	return pessoa;
 }

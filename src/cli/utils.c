@@ -3,6 +3,15 @@
 #include <string.h>
 #include <stdbool.h>
 
+/**
+ * @brief 
+ * 
+ * @param argv Recebe os parâmetros passados via linha de comando para a main()
+ * @param updating Parâmetro passado no caso de operação de update
+ * @return char** Retorna um array de 2 ou 3 posições contendo strings. A 1° posição contém a 
+ * sortKey passada, a 2° contém o json passado e a 3° só é retornada caso o parâmetro updating 
+ * receba true, ela retorna a key passada 
+ */
 char **buildData(char *argv[], bool updating)
 {
   // char str[] = "--insert=3,{'nome':'Cinderela','autor':'Pedro','CPF':1233456,'ano':1940}";

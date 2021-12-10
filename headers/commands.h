@@ -6,5 +6,6 @@ bool remove_op(char **);
 bool search_op(char **);
 bool update_op(char **);
 bool list_op(char **);
+bool exit_op(char **);
 
 #endif // COMMANDS_H_INCLUDED
