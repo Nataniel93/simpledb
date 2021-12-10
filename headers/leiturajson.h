@@ -4,5 +4,7 @@
 #define LEITURAJSON_H_INCLUDED
 
 Pessoa retornarPessoaApartirDeJson(char *data);
+int retornarCpfJson(char *data);
+char **retornarNomeEmailJson(char *data);
 
 #endif /* LEITURAJSON_H_INCLUDED */

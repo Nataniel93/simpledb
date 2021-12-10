@@ -14,9 +14,6 @@
  */
 char **buildData(char *argv[], bool updating)
 {
-  // char str[] = "--insert=3,{'nome':'Cinderela','autor':'Pedro','CPF':1233456,'ano':1940}";
-  // char str[] = "--update=1233456,3,{'nome':'Branca de Neve','autor':'Qualquer','CPF':1233456,'ano':1940}";
-  printf("\nbuildData\n");
   char *pch;
   char *key;
   int data_size = 2;
@@ -43,24 +40,36 @@ char **buildData(char *argv[], bool updating)
   char **data = malloc(sizeof(char *) * data_size);
 
   // Retorna NULL em caso de não conseguir alocar o data
-  if (!data)
-    return NULL;
+  if (!data) return NULL;
 
-  // Aloca as posições dos dados
-  data[0] = malloc(strlen(sortKey) + 1);
-  data[1] = malloc(strlen(json) + 1);
-  if (updating)
+  data[0] = malloc(sizeof(char));
+  strcpy(data[0], "");
+
+  data[1] = malloc(sizeof(char));
+  strcpy(data[1], "");
+
+  if (sortKey != NULL && strlen(sortKey) > 0)
   {
-    data[2] = malloc(strlen(key) + 1);
+    data[0] = realloc(data[0], strlen(sortKey) * sizeof(char));
+    strncpy(data[0], sortKey, strlen(sortKey));
   }
 
-  // Preencher as posições do data
-  strcpy(data[0], sortKey);
-  strcpy(data[1], json);
+  if (json != NULL && strlen(json) > 0)
+  {
+    data[1] = realloc(data[1], strlen(json) * sizeof(char));
+    strncpy(data[1], json, strlen(json));
+  }
 
   if (updating)
   {
-    strncpy(data[2], key, sizeof(data[2]));
+    data[2] = malloc(sizeof(char));
+    strcpy(data[2], "");
+
+    if (key != NULL && strlen(key) > 0)
+    {
+      data[2] = realloc(data[2], strlen(key) * sizeof(char));
+      strncpy(data[2], key, strlen(key));
+    }
   }
 
   return data;

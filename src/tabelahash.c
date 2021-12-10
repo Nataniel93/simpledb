@@ -264,9 +264,9 @@ int atualizar_pessoa_tabela(long cpf, const char *nome, const char *email)
   int retorno = 0;
   Pessoa *pessoa;
 
-  SEMAPHORE_DOWN();
+  pessoa = buscar_pessoa_tabela(cpf);
 
-    pessoa = buscar_pessoa_tabela(cpf);
+  SEMAPHORE_DOWN();
 
     if (pessoa != NULL)
     {
