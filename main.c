@@ -37,5 +37,17 @@ int main(int argc, char *argv[])
 
   imprimir_tabela();
 
+  Pessoa *pessoa = buscar_pessoa(123456789);
+
+  if (pessoa != NULL)
+  {
+    printf("\nResultado Busca: \n");
+    imprimir_pessoa(*pessoa);
+  }
+  else
+  {
+    printf("\nPessoa não encontrada\n");
+  }
+
   return 0;
 }

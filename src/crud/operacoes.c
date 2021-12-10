@@ -64,3 +64,17 @@ int atualizar_pessoa(char *data)
 
   return retorno;
 }
+
+/**
+ * @brief Retorna uma Pessoa caso ela esteja cadastrada
+ * 
+ * @param cpf Cpf da pessoa que se deseja procurar
+ * @return Pessoa* 
+ */
+Pessoa *buscar_pessoa(long cpf)
+{
+  Pessoa *pessoa;
+  pessoa = buscar_pessoa_tabela(cpf);
+
+  return pessoa;
+}

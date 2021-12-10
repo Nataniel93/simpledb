@@ -4,6 +4,8 @@
     "utils.h": "c",
     "leiturajson.h": "c",
     "tabelahash.h": "c",
-    "assert.h": "c"
+    "assert.h": "c",
+    "commands.h": "c",
+    "operacoes.h": "c"
   }
 }
