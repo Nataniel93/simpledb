@@ -78,3 +78,18 @@ Pessoa *buscar_pessoa(long cpf)
 
   return pessoa;
 }
+
+/**
+ * @brief Remove uma pessoa cadastrada
+ * 
+ * @param cpf Cpf da pessoa que será removida
+ * @return int Retorna 1 caso consiga atualizar a pessoa ou 0 caso contrário
+ */
+int remover_pessoa(long cpf)
+{
+  int retorno = 0;
+
+  retorno = remover_pessoa_tabela(cpf);
+
+  return retorno;
+}

@@ -21,8 +21,6 @@ int main(int argc, char *argv[])
   {
     printf("\nFalha ao inserir pessoa\n");
   }
-
-  imprimir_tabela();
   
   int atualizacao = atualizar_pessoa("{'nome':'Ícaro','cpf':'123456789', 'email':'icaro@icaro.com.br'}");
 
@@ -47,6 +45,25 @@ int main(int argc, char *argv[])
   else
   {
     printf("\nPessoa não encontrada\n");
+  }
+
+  /**
+   * Teste remove - 1
+   */
+  long *cpf = 123456789;
+
+  int retorno = 0;
+  retorno = remover_pessoa(cpf);
+
+  imprimir_tabela();
+
+  if (retorno)
+  {
+    printf("\nRemoção processada com sucesso!\n");
+  }
+  else
+  {
+    printf("\nFalha ao remover pessoa\n");
   }
 
   return 0;
