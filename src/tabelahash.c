@@ -144,7 +144,8 @@ int insercao_dados_lista(Pessoa p, Lista *lista)
   lista->inicio = no;
   lista->tam++;
 
-  if (no != NULL) retorno = 1;
+  if (no != NULL)
+    retorno = 1;
 
   return (retorno);
 }
@@ -161,7 +162,10 @@ No *buscar_no(long cpf, No *inicio)
   while (inicio != NULL)
   {
     if (inicio->pessoa.cpf == cpf)
+    {
+
       return inicio;
+    }
     else
       inicio = inicio->proximo;
   }
@@ -222,8 +226,8 @@ int inserir_pessoa_tabela(Pessoa pes)
 
   SEMAPHORE_DOWN();
 
-    retorno = insercao_dados_lista(pes, tabela[indice]);
-    
+  retorno = insercao_dados_lista(pes, tabela[indice]);
+
   SEMAPHORE_UP();
 
   return (retorno);
@@ -241,7 +245,7 @@ Pessoa *buscar_pessoa_tabela(long cpf)
 
   reader_enter();
 
-    No *no = buscar_no(cpf, tabela[indice]->inicio);
+  No *no = buscar_no(cpf, tabela[indice]->inicio);
 
   reader_leave();
 
@@ -266,22 +270,22 @@ int atualizar_pessoa_tabela(long cpf, const char *nome, const char *email)
 
   SEMAPHORE_DOWN();
 
-    pessoa = buscar_pessoa_tabela(cpf);
+  pessoa = buscar_pessoa_tabela(cpf);
 
-    if (pessoa != NULL)
+  if (pessoa != NULL)
+  {
+    if (nome != NULL && strlen(nome) > 0 && strlen(nome) <= 50)
     {
-      if (nome != NULL && strlen(nome) > 0 && strlen(nome) <= 50)
-      {
-        strncpy(pessoa->nome, nome, strlen(nome));
-      }
-
-      if (email != NULL && strlen(email) > 0 && strlen(email) <= 50)
-      {
-        strncpy(pessoa->email, email, strlen(email));
-      }
-
-      retorno = 1;
+      strncpy(pessoa->nome, nome, strlen(nome));
     }
+
+    if (email != NULL && strlen(email) > 0 && strlen(email) <= 50)
+    {
+      strncpy(pessoa->email, email, strlen(email));
+    }
+
+    retorno = 1;
+  }
 
   SEMAPHORE_UP();
 
@@ -315,7 +319,7 @@ int remover_pessoa_tabela(long cpf)
   No *aux;
   No *anterior;
   Lista *li = tabela[indice];
-  
+
   reader_enter();
 
     No *fim = fim_lista(li->inicio, li->tam);
@@ -324,51 +328,55 @@ int remover_pessoa_tabela(long cpf)
 
   SEMAPHORE_DOWN();
 
-    no_pessoa = buscar_no(cpf, li->inicio);
-    
-    if (no_pessoa != NULL)
+  no_pessoa = buscar_no(cpf, li->inicio);
+
+  if (no_pessoa != NULL)
+  {
+    aux = li->inicio;
+    anterior = NULL;
+    achou = 0;
+
+    do
     {
-      aux = li->inicio;
-      anterior = NULL;
-      achou = 0;
-
-      do
+      if (aux->pessoa.cpf == cpf)
       {
-        if (aux->pessoa.cpf == cpf)
-        {
-          achou = achou + 1;
+        achou = achou + 1;
 
-          if (aux == li->inicio)
-          {
-            li->inicio = aux->proximo;
-            free(aux);
-            aux = li->inicio;
-          }
-          else if (aux == fim)
-          {
-            anterior->proximo = NULL;
-            fim = anterior;
-            free(aux);
-            aux = NULL;
-          }
-          else
-          {
-            anterior->proximo = aux->proximo;
-            free(aux);
-            aux = anterior->proximo;
-          }
+        if (aux == li->inicio)
+        {
+          li->inicio = aux->proximo;
+          free(aux);
+          aux = li->inicio;
+        }
+        else if (aux == fim)
+        {
+          anterior->proximo = NULL;
+          fim = anterior;
+          free(aux);
+          aux = NULL;
         }
         else
         {
-          anterior = aux;
-          aux = aux->proximo;
+          anterior->proximo = aux->proximo;
+          free(aux);
+          aux = anterior->proximo;
         }
-      } while (aux != NULL);
+      }
+      else
+      {
+        anterior = aux;
+        aux = aux->proximo;
+      }
+    } while (aux != NULL);
 
-      if (achou != 0) retorno = 1;
-    }
+    if (achou != 0)
+      retorno = 1;
+  }
 
   SEMAPHORE_UP();
+
+  //Decrementa tamanho da lista após remoção.
+  li->tam--;
 
   return (retorno);
 }
@@ -383,12 +391,12 @@ void imprimir_tabela()
   printf("\n---------------------TABELA-------------------------\n");
   for (i = 0; i < __HASHTABLE_LENGTH; i++)
   {
-    if(tabela[i]->tam != 0 ){
+    if (tabela[i]->tam != 0)
+    {
 
-    printf("%d Lista tamanho: %d\n", i, tabela[i]->tam);    
+      printf("%d Lista tamanho: %d\n", i, tabela[i]->tam);
       imprimir_lista(tabela[i]->inicio);
     }
   }
   printf("---------------------FIM TABELA-----------------------\n");
-
 }

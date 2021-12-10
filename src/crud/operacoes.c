@@ -18,3 +18,13 @@ int inserir_pessoa(char *data)
 
   return retorno;
 }
+
+int remover_pessoa(char *data)
+{
+  int retorno = 0;
+  char *arg = data;
+
+  retorno = remover_pessoa_tabela(arg);
+
+  return retorno;
+}

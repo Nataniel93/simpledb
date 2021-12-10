@@ -11,7 +11,18 @@ int main(int argc, char *argv[])
 {
   inicializar_tabela();
 
-  int retorno = inserir_pessoa("{'nome':'Joao','cpf':'123456789','email':'joao@joao.com.br'}");
+  /**
+   * Teste insert - 1
+   */
+  char *arg = "{'nome':'Joao','cpf':'123456789','email':'joao@joao.com.br'}";
+  char *arg2 = "{'nome':'Pedro','cpf':'987654321','email':'pedro@pedro.com.br'}";
+  char *arg3 = "{'nome':'Maria','cpf':'555555555','email':'maria@maria.com.br'}";
+
+  int retorno;
+  retorno = inserir_pessoa(arg);
+  retorno = inserir_pessoa(arg2);
+  retorno = inserir_pessoa(arg3);
+  imprimir_tabela();
 
   if (retorno)
   {
@@ -22,8 +33,24 @@ int main(int argc, char *argv[])
     printf("\nFalha ao inserir pessoa\n");
   }
 
+  /**
+ * Teste remove - 1
+ */
+  long *cpf = 123456789;
+  long *cpf1 = 555555555;
+
+  retorno = remover_pessoa(cpf);
+  retorno = remover_pessoa(cpf1);
   imprimir_tabela();
 
-  
+  if (retorno)
+  {
+    printf("\nRemoção processada com sucesso!\n");
+  }
+  else
+  {
+    printf("\nFalha ao remover pessoa\n");
+  }
+
   return 0;
 }

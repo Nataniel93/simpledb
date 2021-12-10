@@ -2,5 +2,6 @@
 #define OPERACOES_H_INCLUDED
 
 int inserir_pessoa(char *);
+int remover_pessoa(char *);
 
 #endif // OPERACOES_H_INCLUDED
