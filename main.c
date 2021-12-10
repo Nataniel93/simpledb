@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
 {
   inicializar_tabela();
 
+  /**
+   * Teste Inserção
+   */
   int insercao = inserir_pessoa("{'nome':'joao','cpf':'123456789','email':'joao@joao.com.br'}");
 
   if (insercao)
@@ -21,7 +24,12 @@ int main(int argc, char *argv[])
   {
     printf("\nFalha ao inserir pessoa\n");
   }
+
+  imprimir_tabela();
   
+  /**
+   * Teste Atualização
+   */
   int atualizacao = atualizar_pessoa("{'nome':'Ícaro','cpf':'123456789', 'email':'icaro@icaro.com.br'}");
 
   if (atualizacao)
@@ -35,6 +43,9 @@ int main(int argc, char *argv[])
 
   imprimir_tabela();
 
+  /**
+   * Teste Busca
+   */
   Pessoa *pessoa = buscar_pessoa(123456789);
 
   if (pessoa != NULL)
@@ -48,14 +59,12 @@ int main(int argc, char *argv[])
   }
 
   /**
-   * Teste remove - 1
+   * Teste Exclusão
    */
-  long *cpf = 123456789;
+  long cpf = 123456789;
 
   int retorno = 0;
   retorno = remover_pessoa(cpf);
-
-  imprimir_tabela();
 
   if (retorno)
   {
@@ -65,6 +74,8 @@ int main(int argc, char *argv[])
   {
     printf("\nFalha ao remover pessoa\n");
   }
+
+  imprimir_tabela();
 
   return 0;
 }
