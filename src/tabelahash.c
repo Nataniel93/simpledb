@@ -391,7 +391,7 @@ void imprimir_tabela()
   printf("\n---------------------TABELA-------------------------\n");
   for (i = 0; i < __HASHTABLE_LENGTH; i++)
   {
-    if (tabela[i]->tam != 0)
+    if (tabela[i]->tam > 0)
     {
 
       printf("%d Lista tamanho: %d\n", i, tabela[i]->tam);
