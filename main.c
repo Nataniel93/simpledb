@@ -71,7 +71,9 @@ static void *worker1(void *arg)
    * Teste Busca
    */
     Pessoa *pessoa = buscar_pessoa(333333333);
+    printf("\nResultado da busca\n");
     imprimir_pessoa(*pessoa);
+    printf("\n");
     validaOperacao(pessoa, "pesquisa");
 
   fprintf(stdout, "thread 1 exiting...\n");
